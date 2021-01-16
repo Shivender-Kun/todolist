@@ -18,16 +18,12 @@ export default function App() {
     }
     setinput("");
   };
-
-  useEffect(() => {
-    const deleteItems = (i) => {
-      items = items.filter((item) => {
-        return item !== i;
-      });
-      return items;
-    };
-  }, []);
-
+  const deleteItems = (i) => {
+    items = items.filter((item) => {
+      return item !== i;
+    });
+    return items;
+  };
   const clearAll = () => {
     if (items.length > 0) {
       if (window.confirm("Clear All Tasks")) {
