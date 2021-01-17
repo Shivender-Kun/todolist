@@ -47,10 +47,10 @@ export default function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1 id="title">ToDo List</h1>
-      </header>
       <div className="formApp">
+        <header className="App-header">
+          <h1 id="title">ToDo List</h1>
+        </header>
         <div className="inputArea">
           <input
             type="text"
