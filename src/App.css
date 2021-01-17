@@ -4,10 +4,9 @@
   box-sizing: border-box;
 }
 body {
-  /* font-family: cursive; */
-  color: bisque;
-  text-align: center;
+  color: rgb(252, 255, 251);
   background: rgb(54, 66, 173);
+  text-align: center;
 }
 
 .App-header {
@@ -20,17 +19,8 @@ body {
   border-radius: 10px;
 }
 
-.formApp {
-  width: 85%;
-  border-radius: 10px;
-  min-height: 80vh;
-  margin: 20px auto;
-  padding: 20px;
-}
-
 input,
-#addBtn,
-#clearAll {
+button {
   font-size: 18px;
   padding: 10px 15px;
   border-radius: 30px;
@@ -42,19 +32,20 @@ input {
   width: 80%;
 }
 
-button:hover,
-input:hover {
-  background: rgba(65, 225, 177, 0.479);
-}
-
 button:hover {
   cursor: pointer;
 }
 
-.inputArea {
+.inputArea,
+li {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+
+.inputArea {
+  max-width: 93%;
+  margin: auto;
 }
 
 input:focus,
@@ -62,13 +53,18 @@ button:focus {
   outline: none;
 }
 
+button:hover,
+input:hover {
+  background: rgba(65, 225, 177, 0.479);
+}
+
 input::placeholder {
   color: black;
 }
 
-ul {
+ol {
   background: rgba(255, 255, 255, 0.5);
-  padding: 10px 15px;
+  padding: 8px 15px;
   border-radius: 20px;
   max-height: 60vh;
   margin: 50px auto 0px;
@@ -76,24 +72,47 @@ ul {
   overflow-y: scroll;
 }
 
-ul::-webkit-scrollbar {
+ol::-webkit-scrollbar {
   display: none;
 }
 
 li {
-  font-size: 25px;
+  font-size: 18px;
   margin: 25px auto;
-  padding: 5px 10px;
-  list-style: none;
-  border: 2px solid rgba(0, 0, 0, 0.61);
-  background: sandybrown;
-  width: fit-content;
+  padding: 10px;
+  box-shadow: 2px 2px rgb(47, 47, 66);
+  background: rgba(245, 153, 153, 0.644);
   min-width: 95%;
   text-align: left;
 }
 
+#time {
+  width: fit-content;
+  margin-left: 10px;
+}
+
+#setTime {
+  text-align: left;
+  margin-left: 25px;
+  font-size: 18px;
+}
+
+#empty {
+  font-size: 30px;
+  justify-content: center;
+  background-color: transparent;
+  box-shadow: none;
+  color: red;
+}
+
 #clearAll {
   color: orangered;
+}
+
+#delBtn {
+  font-size: 15px;
+  padding: 7px 8px;
+  margin-top: 0px;
 }
 
 #clearAll:hover,
@@ -102,9 +121,10 @@ li {
   color: black;
 }
 
-#delBtn {
-  border-radius: 30px;
-  border: 0;
-  padding: 10px 8px;
-  float: right;
+@media (min-width: 550px) {
+  .App {
+    width: 50%;
+    min-height: 100vh;
+    margin: auto;
+  }
 }

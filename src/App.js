@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import "./App.css";
 
-let items = [];
 export default function App() {
   const [input, setinput] = useState("");
+  const [items, setItems] = useState([]);
+  const [time, setTime] = useState("");
+  const [itemTime, setItemTime] = useState([]);
 
   const handleChange = (event) => {
     setinput(event.target.value);
+  };
+
+  const timeChange = (event) => {
+    setTime(event.target.value);
   };
   const addItems = () => {
     if (input !== "") {
@@ -14,20 +20,17 @@ export default function App() {
         alert("Task Already exists.");
       } else {
         items.push(input);
+        itemTime.push(time);
       }
     }
     setinput("");
-  };
-  const deleteItems = (i) => {
-    items = items.filter((item) => {
-      return item !== i;
-    });
-    return items;
+    setTime("");
   };
   const clearAll = () => {
     if (items.length > 0) {
       if (window.confirm("Clear All Tasks")) {
-        items = [];
+        setItems([]);
+        setItemTime([]);
       } else {
         alert("Clearing all task Canceled");
       }
@@ -35,15 +38,32 @@ export default function App() {
       alert("There are no tasks to clear");
     }
   };
-
   const list = items.map((i, index) => (
     <li key={index}>
-      {i}
-      <button id="delBtn" onClick={() => deleteItems(i)}>
+      {i} <span>at {itemTime[index]}</span>
+      <button
+        id="delBtn"
+        onClick={() => {
+          deleteItems(i, index);
+        }}
+      >
         Delete
       </button>
     </li>
   ));
+  const deleteItems = (i, index) => {
+    setItems(
+      items.filter((item) => {
+        return item !== i;
+      })
+    );
+    setItemTime(
+      itemTime.filter((item) => {
+        return item !== itemTime[index];
+      })
+    );
+    return items;
+  };
 
   return (
     <div className="App">
@@ -64,8 +84,21 @@ export default function App() {
             Add
           </button>
         </div>
+        <div id="setTime">
+          <label>Set Time</label>
+          <input
+            type="time"
+            placeholder="Enter Time"
+            id="time"
+            value={time}
+            onChange={timeChange}
+          />
+        </div>
+
         <div className="itemsList">
-          <ul className="smooth-scroll">{list}</ul>
+          <ol className="smooth-scroll">
+            {items.length === 0 ? <li id="empty">List Empty</li> : list}
+          </ol>
           <button id="clearAll" onClick={clearAll}>
             Clear Tasks
           </button>
