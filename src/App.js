@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import "./App.css";
 
 export default function App() {
+  const [currentTime, setCurrentTime] = useState("");
   const [input, setinput] = useState("");
   const [items, setItems] = useState([]);
   const [time, setTime] = useState("");
   const [itemTime, setItemTime] = useState([]);
+
+  const getCurrentTime = () => {
+    setCurrentTime(new Date().toLocaleTimeString());
+  };
+
+  setInterval(getCurrentTime, 1000);
 
   const handleChange = (event) => {
     setinput(event.target.value);
@@ -15,7 +22,7 @@ export default function App() {
     setTime(event.target.value);
   };
   const addItems = () => {
-    if (input !== "") {
+    if (input !== "" && time !== "") {
       if (items.includes(input)) {
         alert("Task Already exists.");
       } else {
@@ -35,8 +42,9 @@ export default function App() {
         alert("Clearing all task Canceled");
       }
     } else {
-      alert("There are no tasks to clear");
+      alert("Task List Empty");
     }
+    return;
   };
   const list = items.map((i, index) => (
     <li key={index}>
@@ -93,6 +101,7 @@ export default function App() {
             value={time}
             onChange={timeChange}
           />
+          <span>Current Time - {currentTime}</span>
         </div>
 
         <div className="itemsList">

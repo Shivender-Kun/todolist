@@ -89,6 +89,7 @@ li {
 #time {
   width: fit-content;
   margin-left: 10px;
+  margin-right: 25px;
 }
 
 #setTime {
