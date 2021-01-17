@@ -29,6 +29,8 @@ export default function App() {
         items.push(input);
         itemTime.push(time);
       }
+    } else {
+      alert("Enter Task name and Time too");
     }
     setinput("");
     setTime("");
@@ -101,7 +103,7 @@ export default function App() {
             value={time}
             onChange={timeChange}
           />
-          <span>Current Time - {currentTime}</span>
+          Current Time - <span>{currentTime}</span>
         </div>
 
         <div className="itemsList">
