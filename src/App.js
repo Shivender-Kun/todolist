@@ -92,15 +92,17 @@ export default function App() {
             </button>
           </div>
           <div id="setTime">
-            <label>Set Time</label>
-            <input
-              type="time"
-              placeholder="Enter Time"
-              id="time"
-              value={time}
-              onChange={timeChange}
-            />
-            <span>Current Time - {currentTime}</span>
+            <span>
+              <label>Set Time</label>
+              <input
+                type="time"
+                placeholder="Enter Time"
+                id="time"
+                value={time}
+                onChange={timeChange}
+              />
+            </span>
+            <span id="currentTime">Current Time - {currentTime}</span>
           </div>
         </form>
         <div className="itemsList">
