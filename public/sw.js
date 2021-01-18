@@ -12,18 +12,22 @@ this.addEventListener("install", (event) => {
         "/logo512.png",
         "/index.html",
         "/manifest.json",
-        "/main.a9e09ab22182dba9d98a.hot-update.js",
+        "/static/js/1.chunk.js",
       ]);
     })
   );
 });
 
 this.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((res) => {
-      if (res) {
-        return res;
-      }
-    })
-  );
+  if (!navigator.onLine) {
+    event.respondWith(
+      caches.match(event.request).then((res) => {
+        if (res) {
+          return res;
+        }
+        let requestUrl = event.request.clone();
+        return fetch(requestUrl);
+      })
+    );
+  }
 });

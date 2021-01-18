@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 export default function App() {
@@ -11,6 +11,16 @@ export default function App() {
   const getCurrentTime = () => {
     setCurrentTime(new Date().toLocaleTimeString());
   };
+
+  useEffect(() => {
+    setItems(JSON.parse(localStorage.getItem("items")));
+    setItemTime(JSON.parse(localStorage.getItem("itemTime")));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+    localStorage.setItem("itemTime", JSON.stringify(itemTime));
+  }, [items, itemTime]);
 
   setInterval(getCurrentTime, 1000);
 
@@ -44,19 +54,21 @@ export default function App() {
       }
     }
   };
-  const list = items.map((i, index) => (
-    <li style={{ color: "white" }} key={index}>
-      {i} <span>at {itemTime[index]}</span>
-      <button
-        id="delBtn"
-        onClick={() => {
-          deleteItems(i, index);
-        }}
-      >
-        Delete
-      </button>
-    </li>
-  ));
+  const list =
+    items &&
+    items.map((i, index) => (
+      <li style={{ color: "white" }} key={index}>
+        {i} <span>at {itemTime[index]}</span>
+        <button
+          id="delBtn"
+          onClick={() => {
+            deleteItems(i, index);
+          }}
+        >
+          Delete
+        </button>
+      </li>
+    ));
   const deleteItems = (i, index) => {
     setItems(
       items.filter((item) => {
@@ -68,7 +80,6 @@ export default function App() {
         return item !== itemTime[index];
       })
     );
-    return items;
   };
 
   return (
