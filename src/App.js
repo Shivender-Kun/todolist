@@ -42,10 +42,7 @@ export default function App() {
       } else {
         alert("Clearing all task Canceled");
       }
-    } else {
-      alert("Task List Empty");
     }
-    return;
   };
   const list = items.map((i, index) => (
     <li key={index}>
@@ -90,7 +87,7 @@ export default function App() {
               onChange={handleChange}
               maxLength="45"
             />
-            <button type="submit" id="addBtn" onClick={addItems}>
+            <button type="submit" id="addBtn">
               Add
             </button>
           </div>
@@ -108,7 +105,7 @@ export default function App() {
         </form>
         <div className="itemsList">
           <ol className="smooth-scroll">
-            {items.length === 0 ? <li id="empty">List Empty</li> : list}
+            {items.length === 0 ? <li id="empty">No Tasks</li> : list}
           </ol>
           <button id="clearAll" onClick={clearAll}>
             Clear Tasks
