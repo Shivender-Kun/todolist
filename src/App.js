@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 export default function App() {
@@ -7,20 +7,29 @@ export default function App() {
   const [items, setItems] = useState([]);
   const [time, setTime] = useState("");
   const [itemTime, setItemTime] = useState([]);
+  // const [localData, setLocalData] = useState([]);
+  // const [localTime, setLocalTime] = useState([]);
 
   const getCurrentTime = () => {
     setCurrentTime(new Date().toLocaleTimeString());
   };
 
-  useEffect(() => {
-    setItems(JSON.parse(localStorage.getItem("items")));
-    setItemTime(JSON.parse(localStorage.getItem("itemTime")));
-  }, []);
+  // useEffect(() => {
+  //   console.log("setting");
+  //   console.log(localStorage);
+  //   if (localStorage.length === 3) {
+  //     if (JSON.parse(localStorage.getItem("items")).length > 0) {
+  //       setItems(JSON.parse(localStorage.getItem("items")));
+  //       setItemTime(JSON.parse(localStorage.getItem("itemTime")));
+  //     }
+  //   }
+  // }, []);
 
-  const refresh = () => {
-    localStorage.setItem("items", JSON.stringify(items));
-    localStorage.setItem("itemTime", JSON.stringify(itemTime));
-  };
+  // const refreshing = (operation, tasks, taskTime) => {
+  //   localStorage.setItem("items", JSON.stringify(tasks));
+  //   localStorage.setItem("itemTime", JSON.stringify(taskTime));
+  //   console.log(operation, tasks, taskTime, localStorage);
+  // };
 
   setInterval(getCurrentTime, 1000);
 
@@ -43,7 +52,9 @@ export default function App() {
     }
     setinput("");
     setTime("");
-    refresh();
+    // setLocalData(items);
+    // setLocalTime(itemTime);
+    // refreshing("adding", localData, localTime);
   };
   const clearAll = () => {
     if (items.length > 0) {
@@ -54,23 +65,28 @@ export default function App() {
         alert("Clearing all task Canceled");
       }
     }
-    refresh();
+    localStorage.removeItem("items");
+    localStorage.removeItem("itemTime");
   };
+
   const list =
-    items &&
-    items.map((i, index) => (
-      <li style={{ color: "white" }} key={index}>
-        {i} <span>at {itemTime[index]}</span>
-        <button
-          id="delBtn"
-          onClick={() => {
-            deleteItems(i, index);
-          }}
-        >
-          Delete
-        </button>
-      </li>
-    ));
+    items.length === 0 ? (
+      <li id="empty">No Tasks</li>
+    ) : (
+      items.map((i, index) => (
+        <li style={{ color: "white" }} key={index}>
+          {i} <span>at {itemTime[index]}</span>
+          <button
+            id="delBtn"
+            onClick={() => {
+              deleteItems(i, index);
+            }}
+          >
+            Delete
+          </button>
+        </li>
+      ))
+    );
   const deleteItems = (i, index) => {
     setItems(
       items.filter((item) => {
@@ -82,7 +98,9 @@ export default function App() {
         return item !== itemTime[index];
       })
     );
-    refresh();
+    // setLocalTime(itemTime);
+    // setLocalData(items);
+    // refreshing("deleting", localData, localTime);
   };
 
   return (
@@ -120,9 +138,7 @@ export default function App() {
           </div>
         </form>
         <div className="itemsList">
-          <ol className="smooth-scroll">
-            {items.length === 0 ? <li id="empty">No Tasks</li> : list}
-          </ol>
+          <ol className="smooth-scroll">{list}</ol>
           <button id="clearAll" onClick={clearAll}>
             Clear Tasks
           </button>
