@@ -9,7 +9,7 @@ body {
   background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
   text-align: center;
   font-family: "Eczar", sans-serif;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .App-header {
@@ -120,6 +120,7 @@ li {
 #clearAll {
   color: orangered;
   font-weight: bolder;
+  margin-bottom: 20px;
 }
 
 #delBtn {
