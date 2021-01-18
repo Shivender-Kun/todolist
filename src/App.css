@@ -4,9 +4,10 @@
   box-sizing: border-box;
 }
 body {
-  color: rgb(252, 255, 251);
+  color: rgba(252, 255, 251, 0.829);
   background: rgb(54, 66, 173);
   text-align: center;
+  font-family: "Eczar", sans-serif;
 }
 
 .App-header {
@@ -21,6 +22,7 @@ body {
 
 input,
 button {
+  background-color: rgba(243, 241, 241, 0.767);
   font-size: 18px;
   padding: 10px 15px;
   border-radius: 30px;
@@ -80,8 +82,9 @@ li {
   font-size: 18px;
   margin: 25px auto;
   padding: 10px;
+  /* color: black; */
   box-shadow: 2px 2px rgb(47, 47, 66);
-  background: rgba(245, 153, 153, 0.644);
+  background: rgb(27, 74, 145);
   min-width: 95%;
   text-align: left;
 }
@@ -89,7 +92,7 @@ li {
 #time {
   width: fit-content;
   margin-left: 10px;
-  margin-right: 25px;
+  margin-right: 15px;
 }
 
 #setTime {
@@ -108,17 +111,19 @@ li {
 
 #clearAll {
   color: orangered;
+  font-weight: bolder;
 }
 
 #delBtn {
   font-size: 15px;
   padding: 7px 8px;
   margin-top: 0px;
+  font-weight: bolder;
 }
 
 #clearAll:hover,
 #delBtn:hover {
-  background: red;
+  background: rgba(148, 3, 3, 0.856);
   color: black;
 }
 

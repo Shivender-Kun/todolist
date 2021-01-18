@@ -45,7 +45,7 @@ export default function App() {
     }
   };
   const list = items.map((i, index) => (
-    <li key={index}>
+    <li style={{ color: "white" }} key={index}>
       {i} <span>at {itemTime[index]}</span>
       <button
         id="delBtn"
@@ -100,7 +100,7 @@ export default function App() {
               value={time}
               onChange={timeChange}
             />
-            Current Time - <span>{currentTime}</span>
+            <span>Current Time - {currentTime}</span>
           </div>
         </form>
         <div className="itemsList">
