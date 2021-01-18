@@ -7,29 +7,24 @@ export default function App() {
   const [items, setItems] = useState([]);
   const [time, setTime] = useState("");
   const [itemTime, setItemTime] = useState([]);
-  // const [localData, setLocalData] = useState([]);
-  // const [localTime, setLocalTime] = useState([]);
 
   const getCurrentTime = () => {
     setCurrentTime(new Date().toLocaleTimeString());
   };
-
-  // useEffect(() => {
-  //   console.log("setting");
-  //   console.log(localStorage);
-  //   if (localStorage.length === 3) {
-  //     if (JSON.parse(localStorage.getItem("items")).length > 0) {
-  //       setItems(JSON.parse(localStorage.getItem("items")));
-  //       setItemTime(JSON.parse(localStorage.getItem("itemTime")));
-  //     }
-  //   }
-  // }, []);
-
-  // const refreshing = (operation, tasks, taskTime) => {
-  //   localStorage.setItem("items", JSON.stringify(tasks));
-  //   localStorage.setItem("itemTime", JSON.stringify(taskTime));
-  //   console.log(operation, tasks, taskTime, localStorage);
-  // };
+  React.useEffect(() => {
+    if (localStorage.length > 1) {
+      setItems(
+        Object.keys(localStorage).filter((i) => {
+          return i !== "randid";
+        })
+      );
+      setItemTime(
+        Object.values(localStorage).filter((i) => {
+          return i.length < 7;
+        })
+      );
+    }
+  }, []);
 
   setInterval(getCurrentTime, 1000);
 
@@ -48,25 +43,22 @@ export default function App() {
       } else {
         items.push(input);
         itemTime.push(time);
+        localStorage.setItem(input, time);
       }
     }
     setinput("");
     setTime("");
-    // setLocalData(items);
-    // setLocalTime(itemTime);
-    // refreshing("adding", localData, localTime);
   };
   const clearAll = () => {
     if (items.length > 0) {
       if (window.confirm("Clear All Tasks")) {
         setItems([]);
         setItemTime([]);
+        localStorage.clear();
       } else {
         alert("Clearing all task Canceled");
       }
     }
-    localStorage.removeItem("items");
-    localStorage.removeItem("itemTime");
   };
 
   const list =
@@ -98,9 +90,7 @@ export default function App() {
         return item !== itemTime[index];
       })
     );
-    // setLocalTime(itemTime);
-    // setLocalData(items);
-    // refreshing("deleting", localData, localTime);
+    localStorage.removeItem(i);
   };
 
   return (

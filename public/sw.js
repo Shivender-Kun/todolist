@@ -13,6 +13,8 @@ this.addEventListener("install", (event) => {
         "/index.html",
         "/manifest.json",
         "/static/js/1.chunk.js",
+        "static/js/main.chunk.js.map",
+        "/static/js/0.chunk.js.map",
       ]);
     })
   );
