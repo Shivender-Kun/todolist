@@ -43,6 +43,7 @@ export default function App() {
     }
     setinput("");
     setTime("");
+    refresh();
   };
   const clearAll = () => {
     if (items.length > 0) {
@@ -53,6 +54,7 @@ export default function App() {
         alert("Clearing all task Canceled");
       }
     }
+    refresh();
   };
   const list =
     items &&
@@ -80,6 +82,7 @@ export default function App() {
         return item !== itemTime[index];
       })
     );
+    refresh();
   };
 
   return (
