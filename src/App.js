@@ -17,10 +17,10 @@ export default function App() {
     setItemTime(JSON.parse(localStorage.getItem("itemTime")));
   }, []);
 
-  useEffect(() => {
+  const refresh = () => {
     localStorage.setItem("items", JSON.stringify(items));
     localStorage.setItem("itemTime", JSON.stringify(itemTime));
-  }, [items, itemTime]);
+  };
 
   setInterval(getCurrentTime, 1000);
 
