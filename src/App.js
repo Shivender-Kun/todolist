@@ -21,7 +21,8 @@ export default function App() {
   const timeChange = (event) => {
     setTime(event.target.value);
   };
-  const addItems = () => {
+  const addItems = (e) => {
+    e.preventDefault();
     if (input !== "" && time !== "") {
       if (items.includes(input)) {
         alert("Task Already exists.");
@@ -29,8 +30,6 @@ export default function App() {
         items.push(input);
         itemTime.push(time);
       }
-    } else {
-      alert("Enter Task name and Time too");
     }
     setinput("");
     setTime("");
@@ -81,31 +80,32 @@ export default function App() {
         <header className="App-header">
           <h1 id="title">ToDo List</h1>
         </header>
-        <div className="inputArea">
-          <input
-            type="text"
-            placeholder="Enter The Task"
-            id="inputArea"
-            value={input}
-            onChange={handleChange}
-            maxLength="45"
-          />
-          <button id="addBtn" onClick={addItems}>
-            Add
-          </button>
-        </div>
-        <div id="setTime">
-          <label>Set Time</label>
-          <input
-            type="time"
-            placeholder="Enter Time"
-            id="time"
-            value={time}
-            onChange={timeChange}
-          />
-          Current Time - <span>{currentTime}</span>
-        </div>
-
+        <form onSubmit={addItems} required>
+          <div className="inputArea">
+            <input
+              type="text"
+              placeholder="Enter The Task"
+              id="inputArea"
+              value={input}
+              onChange={handleChange}
+              maxLength="45"
+            />
+            <button type="submit" id="addBtn" onClick={addItems}>
+              Add
+            </button>
+          </div>
+          <div id="setTime">
+            <label>Set Time</label>
+            <input
+              type="time"
+              placeholder="Enter Time"
+              id="time"
+              value={time}
+              onChange={timeChange}
+            />
+            Current Time - <span>{currentTime}</span>
+          </div>
+        </form>
         <div className="itemsList">
           <ol className="smooth-scroll">
             {items.length === 0 ? <li id="empty">List Empty</li> : list}
