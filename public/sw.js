@@ -1,27 +1,27 @@
-const cacheVersion = "v1";
+const cacheVersion = "v2";
 
 // install the service worker
 this.addEventListener("install", (e) => {
-  e.waitUntil(
-    caches
-      .open(cacheVersion)
-      .then((cache) => {
-        cache.addAll([
-          "/faveicon.ico",
-          "/",
-          "/static/js/bundle.js",
-          "/static/js/main.chunk.js",
-          "/static/js/0.chunk.js",
-          "/logo512.png",
-          "/index.html",
-          "/manifest.json",
-          "/static/js/1.chunk.js",
-          "static/js/main.chunk.js.map",
-          "/static/js/0.chunk.js.map",
-        ]);
-      })
-      .then(() => this.skipWaiting())
-  );
+  // e.waitUntil(
+  //   caches
+  //     .open(cacheVersion)
+  //     .then((cache) => {
+  //       cache.addAll([
+  //         "/faveicon.ico",
+  //         "/",
+  //         "/static/js/bundle.js",
+  //         "/static/js/main.chunk.js",
+  //         "/static/js/0.chunk.js",
+  //         "/logo512.png",
+  //         "/index.html",
+  //         "/manifest.json",
+  //         "/static/js/1.chunk.js",
+  //         "static/js/main.chunk.js.map",
+  //         "/static/js/0.chunk.js.map",
+  //       ]);
+  //     })
+  //     .then(() => this.skipWaiting())
+  // );
 });
 
 this.addEventListener("activate", (e) => {
@@ -33,6 +33,7 @@ this.addEventListener("activate", (e) => {
           if (cache !== cacheVersion) {
             return caches.delete(cache);
           }
+          return null;
         })
       );
     })
