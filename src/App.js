@@ -10,11 +10,11 @@ export default function App() {
   const [items, setItems] = useState([]);
   const [time, setTime] = useState("");
   const [itemTime, setItemTime] = useState([]);
-  let hours, minutes;
+
   // Get current time for clock
   const getCurrentTime = () => {
-    hours = `${new Date().getHours()}`;
-    minutes = `${new Date().getMinutes()}`;
+    let hours = `${new Date().getHours()}`;
+    let minutes = `${new Date().getMinutes()}`;
     setCurrentTime(
       (hours.length > 1 ? hours : "0" + hours) +
         ":" +
