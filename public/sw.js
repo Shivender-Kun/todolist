@@ -7,17 +7,20 @@ this.addEventListener("install", (e) => {
       .open(cacheVersion)
       .then((cache) => {
         cache.addAll([
-          "/faveicon.ico",
           "/",
-          "/static/js/bundle.js",
-          "/static/js/main.chunk.js",
-          "/static/js/0.chunk.js",
-          "/logo512.png",
-          "/index.html",
-          "/manifest.json",
-          "/static/js/1.chunk.js",
+          "static/js/bundle.js",
+          "static/js/main.chunk.js",
+          "static/js/0.chunk.js",
+          "logo512.png",
+          "index.html",
+          "manifest.json",
+          "static/js/1.chunk.js",
           "static/js/main.chunk.js.map",
-          "/static/js/0.chunk.js.map",
+          "static/js/0.chunk.js.map",
+          "/faveicon.ico",
+          "/static/css/main.ef8c2f57.chunk.css",
+          "/static/js/2.6a739a88.chunk.js",
+          "/static/js/main.d032018f.chunk.js",
         ]);
       })
       .then(() => this.skipWaiting())
