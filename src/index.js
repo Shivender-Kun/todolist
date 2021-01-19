@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import swDev from "./swDev";
+import { checkServiceWorkerSupport } from "./serviceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -10,4 +10,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-swDev();
+
+checkServiceWorkerSupport();
