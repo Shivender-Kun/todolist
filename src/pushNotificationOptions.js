@@ -1,6 +1,6 @@
 // Options and actions for the notifications
 const pushNotificationOptions = {
-  body: new Date().toLocaleTimeString(),
+  body: "h",
   icon: `${process.env.PUBLIC_URL}/logo128.png`,
   vibrate: [100, 50, 100],
   data: {

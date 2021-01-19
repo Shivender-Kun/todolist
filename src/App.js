@@ -10,11 +10,11 @@ export default function App() {
   const [items, setItems] = useState([]);
   const [time, setTime] = useState("");
   const [itemTime, setItemTime] = useState([]);
-
+  let hours, minutes;
   // Get current time for clock
   const getCurrentTime = () => {
-    let hours = `${new Date().getHours()}`;
-    let minutes = `${new Date().getMinutes()}`;
+    hours = `${new Date().getHours()}`;
+    minutes = `${new Date().getMinutes()}`;
     setCurrentTime(
       (hours.length > 1 ? hours : "0" + hours) +
         ":" +
@@ -112,7 +112,8 @@ export default function App() {
     ) : (
       items.map((i, index) => (
         <li style={{ color: "white" }} key={index}>
-          {i} <span>at {itemTime[index]}</span>
+          {i.length > 15 ? i.substring(0, 15) + "..." : i}{" "}
+          <span>at {itemTime[index]}</span>
           <button
             id="delBtn"
             onClick={() => {
@@ -158,7 +159,6 @@ export default function App() {
               value={input}
               onChange={handleChange}
               maxLength="45"
-              minLength="5"
             />
             <button type="submit" id="addBtn">
               Add
