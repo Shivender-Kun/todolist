@@ -108,6 +108,7 @@ export default function App() {
               value={input}
               onChange={handleChange}
               maxLength="45"
+              minLength="5"
             />
             <button type="submit" id="addBtn">
               Add
