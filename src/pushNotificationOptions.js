@@ -1,7 +1,8 @@
 // Options and actions for the notifications
 const pushNotificationOptions = {
   body: "It's Now or Never 😊",
-  icon: `${process.env.PUBLIC_URL}/logo128.png`,
+  icon: `${process.env.PUBLIC_URL}/logo512.png`,
+  audio: "./media/audio.wav",
   vibrate: [100, 50, 100],
   data: {
     dateOfArrival: Date.now(),
