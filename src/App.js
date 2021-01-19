@@ -13,10 +13,12 @@ export default function App() {
 
   // Get current time for clock
   const getCurrentTime = () => {
+    let hours = `${new Date().getHours()}`;
+    let minutes = `${new Date().getMinutes()}`;
     setCurrentTime(
-      new Date().getHours() +
+      (hours.length > 1 ? hours : "0" + hours) +
         ":" +
-        new Date().getMinutes() +
+        (minutes.length > 1 ? minutes : "0" + minutes) +
         ":" +
         new Date().getSeconds()
     );
