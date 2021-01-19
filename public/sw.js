@@ -15,7 +15,6 @@ this.addEventListener("install", (event) => {
         "/static/js/1.chunk.js",
         "static/js/main.chunk.js.map",
         "/static/js/0.chunk.js.map",
-        "https://2do-list-react.netlify.app/",
       ]);
     })
   );

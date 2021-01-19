@@ -12,7 +12,7 @@ export default function App() {
     setCurrentTime(new Date().toLocaleTimeString());
   };
   React.useEffect(() => {
-    if (localStorage.length > 1) {
+    if (localStorage.length > 0) {
       setItems(
         Object.keys(localStorage).filter((i) => {
           return i !== "randid";
