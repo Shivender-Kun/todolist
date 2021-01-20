@@ -8,4 +8,8 @@ export const checkServiceWorkerSupport = () => {
       navigator.serviceWorker.register(swUrl);
     });
   }
+  // Ask for notification permission
+  if ("Notification" in window) {
+    Notification.requestPermission((status) => status);
+  }
 };

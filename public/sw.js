@@ -1,3 +1,4 @@
+// Naming a cache version
 const cacheVersion = "v1";
 
 // install the service worker
@@ -6,6 +7,7 @@ this.addEventListener("install", (e) => {
     caches
       .open(cacheVersion)
       .then((cache) => {
+        // Cache the required files
         cache.addAll([
           "/",
           "/logo512.png",
@@ -24,15 +26,18 @@ this.addEventListener("install", (e) => {
           "/static/css/main.ef8c2f57.chunk.css",
           "/static/css/main.ef8c2f57.chunk.css.map",
           "/sw.js",
+          "/media/audio.mp3",
         ]);
       })
       .then(() => this.skipWaiting())
   );
 });
 
+// Activate the servicer worker
 this.addEventListener("activate", (e) => {
   // Remove unwanted cache versions
   e.waitUntil(
+    // Removing old cache versions
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cache) => {
@@ -46,7 +51,9 @@ this.addEventListener("activate", (e) => {
   );
 });
 
+// Fetching the cached files
 this.addEventListener("fetch", (e) => {
+  // If user ofline fetch cached/cloned files
   if (navigator.onLine) {
     e.waitUntil(
       fetch(e.request)
@@ -61,11 +68,23 @@ this.addEventListener("fetch", (e) => {
         })
         .catch((err) => caches.match(e.request).then((res) => res))
     );
-  } else {
+  }
+  // If user online then wait for the latest server files
+  else {
     e.respondWith(
       fetch(e.request)
         .then((res) => res)
         .catch((err) => caches.match(e.request).then((res) => res))
     );
+  }
+});
+
+// To check if notification is clicked
+this.addEventListener("notificationclick", (e) => {
+  if (e.action === "close") {
+    e.notification.close();
+  } else {
+    clients.openWindow("https://2do-list-react.netlify.app/");
+    e.notification.close();
   }
 });

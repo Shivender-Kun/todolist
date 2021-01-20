@@ -165,6 +165,7 @@ export default function App() {
             </button>
           </div>
           <div id="setTime">
+            <span id="currentTime">Current Time - {currentTime}</span>
             <span>
               <label>Set Time</label>
               <input
@@ -175,11 +176,13 @@ export default function App() {
                 onChange={timeChange}
               />
             </span>
-            <span id="currentTime">Current Time - {currentTime}</span>
           </div>
         </form>
         <div className="itemsList">
-          <ol className="smooth-scroll">{list}</ol>
+          <ol className="smooth-scroll">
+            <h1 id="listTitle">Task List</h1>
+            {list}
+          </ol>
           <button id="clearAll" onClick={clearAll}>
             Clear Tasks
           </button>

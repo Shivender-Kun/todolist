@@ -55,6 +55,8 @@ li,
 
 #currentTime {
   margin-top: 30px;
+  margin-right: 10px;
+  width: 190px;
 }
 
 input:focus,
@@ -72,8 +74,8 @@ input::placeholder {
 }
 
 ol {
-  background-color: #9e8fb2;
-  background-image: linear-gradient(315deg, #9e8fb2 0%, #a7acd9 74%);
+  background-color: #9e8fb27e;
+  background-image: linear-gradient(315deg, #9e8fb223 0%, #a7acd90c 74%);
   padding: 8px 15px;
   border-radius: 20px;
   max-height: 60vh;
@@ -97,16 +99,23 @@ li {
   background-image: linear-gradient(315deg, #b91372 0%, #6b0f1a 74%);
 }
 
+#listTitle {
+  font-size: 30px;
+  font-weight: 500;
+  color: #b0eebf;
+}
+
 #time {
   width: fit-content;
   margin-left: 10px;
-  margin-right: 15px;
 }
 
 #setTime {
   text-align: left;
   justify-content: space-around;
-  margin-left: 25px;
+  flex-wrap: wrap;
+  margin-left: 20px;
+  margin-right: 20px;
   font-size: 18px;
 }
 
