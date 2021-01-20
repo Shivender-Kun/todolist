@@ -1,3 +1,9 @@
+## ToDo List PWA
+
+This is a progressive web app that work offline and notifies the user of the upcoming task.
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
